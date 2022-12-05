@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import Task from "./components/Task"
+import Task1 from "./components/Task1"
+import Task2 from "./components/Task2"
+import Footer from "./components/Footer"
 
 export default function App() {
   return (
@@ -7,21 +10,10 @@ export default function App() {
       <View style={styles.container}>
         <Text style={styles.headerText}>Today's Tasks</Text>
         <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
+        <Task1 />
+        <Task2 />
+        <Footer />
+        
       </View>
     </ScrollView>
   );
