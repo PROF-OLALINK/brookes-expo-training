@@ -1,21 +1,62 @@
 import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import Task from "./components/Task"
-import Task1 from "./components/Task1"
-import Task2 from "./components/Task2"
 import Footer from "./components/Footer"
+import { useState } from 'react';
+
+const TASK_DATA = [
+  {
+    title: "Like 👍",
+    isDone: false
+  },
+  {
+    title: "Comment 📢",
+    isDone: false
+  },
+  {
+    title: "Subscribe 🙃",
+    isDone: false
+  },
+]
+
+// filter, find, map, reduce, sort, every, flatten
 
 export default function App() {
+  const [tasks, setTasks] = useState(TASK_DATA);
+  const [title, setTitle] = useState("");
+  
+  const onPress = () => {
+    if (title !== "") {
+      setTasks(prev => [
+        ...prev,
+        {
+          title: title,
+          isDone: false
+        }
+      ])
+      setTitle("");
+    } else {
+      console.log("title is empty")
+    }
+  };
+
+  const onChangeText = (text) => {
+    setTitle(text);
+  }
+
   return (
-    <ScrollView style={styles.scrollview}>
-      <View style={styles.container}>
-        <Text style={styles.headerText}>Today's Tasks</Text>
-        <Task />
-        <Task1 />
-        <Task2 />
-        <Footer />
-        
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView style={styles.scrollview}>
+        <View style={styles.container}>
+          <Text style={styles.headerText}>Today's Tasks</Text>
+          {
+            tasks.map((task, index) => (
+              <Task title={task.title} key={index} />
+            ))
+          }
+        </View>
+      </ScrollView>
+      <Footer onPress={onPress} onChangeText={onChangeText} title={title} />
+    </>
   );
 }
 
@@ -28,7 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     paddingTop: 94,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   headerText: {
     width: "100%",

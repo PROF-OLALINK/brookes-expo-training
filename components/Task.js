@@ -1,12 +1,12 @@
 import { StyleSheet, View, Text } from "react-native";
 
 
-export default function Task() {
+export default function Task({title}) {
     return (
         <View style={styles.container}>
             <View style={styles.leftSection}>
                 <View style={styles.square} />
-                <Text>Like 👍</Text>
+                <Text>{title}</Text>
             </View>
             <View  style={styles.checkbox}/>
         </View>

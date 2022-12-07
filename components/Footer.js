@@ -1,64 +1,60 @@
-import { StyleSheet, View, Text, TextInput } from "react-native";
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 
-
-export default function Footer() {
-    return (
-        <View style={styles.box}>
-         <TextInput  style={styles.Input}  placeholder="Write a task"/>
-        <View style={styles.button}> 
-            <Text style={styles.Text}>+</Text>
+export default function Footer({ onPress, onChangeText, title }) {
+  return (
+    <View style={styles.box}>
+      <TextInput style={styles.Input} placeholder="Write a task" onChangeText={onChangeText}  value={title} />
+      <View
+        style={{
+          width: 20,
+          height: 1,
+        }}
+      />
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.button}>
+          <Text style={styles.Text}>+</Text>
         </View>
-        </View>
-    )
+      </TouchableOpacity>
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "white",
-        width: "100%",
-        height: 53,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 15,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        borderRadius: 10,
-        marginBottom: 20
-    },
-
- 
-    box: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 245
-        
-    },
-    Input: {
-        backgroundColor: "#fff",
-        width: 246,
-        height: 45,
-        borderRadius: 60,
-        shadowColor: "rgba(0, 0, 0, 0.15)",
-        marginTop: 5,
-        textAlign: "center",
-        padding: 10
-        
-    },
-    button:{
-        paddingHorizontal: 20,
-        backgroundColor: "#fff",
-        borderRadius: 53,
-        height: 60,
-        width: 60,
-        justifyContent:"center"
-    },
-    Text: {
-        fontSize: 35,
-        color: "rgba(192, 192, 192, 1)",
-        
-        
-    }
- 
-  
-})
+  box: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    position: "absolute",
+    bottom: 37,
+    paddingHorizontal: 20,
+    width: "100%",
+    alignItems: "center",
+  },
+  Input: {
+    backgroundColor: "#fff",
+    width: 246,
+    height: 45,
+    borderRadius: 60,
+    shadowColor: "rgba(0, 0, 0, 0.15)",
+    textAlign: "center",
+    padding: 10,
+  },
+  button: {
+    backgroundColor: "#fff",
+    borderRadius: 53,
+    height: 60,
+    width: 60,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  Text: {
+    fontSize: 35,
+    color: "rgba(192, 192, 192, 1)",
+  },
+});
