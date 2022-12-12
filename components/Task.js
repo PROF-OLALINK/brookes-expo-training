@@ -1,6 +1,10 @@
 import { StyleSheet, View, Text } from "react-native";
 
-
+const handlePress = () => {
+    const newColor = bgColor ? null : 'blue';
+    setBgColor(newColor);
+  };
+    
 export default function Task({title}) {
     return (
         <View style={styles.container}>
@@ -8,7 +12,10 @@ export default function Task({title}) {
                 <View style={styles.square} />
                 <Text>{title}</Text>
             </View>
-            <View  style={styles.checkbox}/>
+            <TouchableOpacity onPress={handlePress}>
+            <View  style={[styles.checkbox, { backgroundColor: bgColor }]}/>
+            </TouchableOpacity>
+            
         </View>
     )
 }
