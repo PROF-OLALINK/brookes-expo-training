@@ -24,6 +24,7 @@ export default function App() {
   const [tasks, setTasks] = useState(TASK_DATA);
   const [title, setTitle] = useState("");
   
+  console.log("tasks", tasks)
   const onPress = () => {
     if (title !== "") {
       setTasks(prev => [
@@ -43,6 +44,10 @@ export default function App() {
     setTitle(text);
   }
 
+  const onComplete = (title, complete) => {
+    
+  }
+
   return (
     <>
       <ScrollView style={styles.scrollview}>
@@ -50,7 +55,7 @@ export default function App() {
           <Text style={styles.headerText}>Today's Tasks</Text>
           {
             tasks.map((task, index) => (
-              <Task title={task.title} key={index} />
+              <Task title={task.title} key={index} onComplete={onComplete} />
             ))
           }
         </View>

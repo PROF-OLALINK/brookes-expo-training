@@ -1,19 +1,30 @@
-import { StyleSheet, View, Text } from "react-native";
+import { useEffect, useState } from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-const handlePress = () => {
-    const newColor = bgColor ? null : 'blue';
-    setBgColor(newColor);
-  };
+
     
-export default function Task({title}) {
+export default function Task({title, onComplete }) {
+    const [complete, setComplete] = useState(false);
+    const handlePress = () => {
+        setComplete(prev => !prev);
+    };
+
+    useEffect(() => {
+        onComplete(title, complete)
+    }, [complete])
+
     return (
         <View style={styles.container}>
             <View style={styles.leftSection}>
-                <View style={styles.square} />
-                <Text>{title}</Text>
+                <View style={[styles.square, complete && styles.squareCompleted]} />
+                <Text style={
+                    complete && {
+                        textDecorationLine: 'line-through', textDecorationStyle: 'solid'
+                    }
+                }>{title}</Text>
             </View>
             <TouchableOpacity onPress={handlePress}>
-            <View  style={[styles.checkbox, { backgroundColor: bgColor }]}/>
+                <View  style={[styles.checkbox, complete && styles.squareCompleted]}/>
             </TouchableOpacity>
             
         </View>
@@ -40,6 +51,9 @@ const styles = StyleSheet.create({
         width: 24,
         marginRight: 15,
         borderRadius: 5
+    },
+    squareCompleted: {
+        backgroundColor: "green"
     },
     checkbox: {
         borderWidth: 2,
