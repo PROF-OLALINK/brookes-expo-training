@@ -3,15 +3,10 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 
     
-export default function Task({title, onComplete }) {
-    const [complete, setComplete] = useState(false);
+export default function Task({title, complete, onComplete }) {
     const handlePress = () => {
-        setComplete(prev => !prev);
+        onComplete(title, !complete)
     };
-
-    useEffect(() => {
-        onComplete(title, complete)
-    }, [complete])
 
     return (
         <View style={styles.container}>
